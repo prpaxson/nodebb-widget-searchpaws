@@ -107,6 +107,36 @@ Widget.renderRecentPostsWidget = async function (widget) {
 	return widget;
 };
 
+Widget.renderRecentTopicsWidget = async function (widget) {
+	const numTopics = (widget.data.numTopics || 8) - 1;
+	const cids = getCidsArray(widget);
+
+	let key;
+	if (cids.length) {
+		if (cids.length === 1) {
+			key = 'cid:' + cids[0] + ':tids';
+		} else {
+			key = cids.map(cid => 'cid:' + cid + ':tids');
+		}
+	} else {
+		key = 'topics:recent';
+	}
+	const data = await topics.getTopicsFromSet(key, widget.uid, 0, Math.max(0, numTopics));
+	data.topics.forEach(function (topicData) {
+		if (topicData && !topicData.teaser) {
+			topicData.teaser = {
+				user: topicData.user,
+			};
+		}
+	});
+	widget.html = await app.renderAsync('widgets/recenttopics', {
+		topics: data.topics,
+		numTopics: numTopics,
+		relative_path: nconf.get('relative_path'),
+	});
+	return widget;
+};
+
 Widget.renderTrendingQuestionsWidget = async function (widget) {
 	const numTopics = (widget.data.numTopics || 8) - 1;
 	const cids = getCidsArray(widget);
@@ -278,6 +308,12 @@ Widget.defineWidgets = async function (widgets) {
 			name: 'Recent Posts',
 			description: 'Lists the latest posts on your forum.',
 			content: 'admin/recentposts',
+		},
+		{
+			widget: 'recenttopics',
+			name: 'Recent Topics',
+			description: 'Lists the latest topics on your forum.',
+			content: 'admin/recenttopics',
 		},
 		{
 			widget: 'trendingquestions',
