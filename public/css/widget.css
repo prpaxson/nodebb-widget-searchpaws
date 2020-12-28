@@ -102,3 +102,14 @@
 [data-widget-area="sidebar"] .category .teaser {
 	display: none;
 }
+
+.category-icon {
+	line-height: 4px;
+	padding: 8px;
+	border-radius: 50%;
+	margin-right: 8px;
+}
+
+.category-header {
+	padding-top:8px;
+}

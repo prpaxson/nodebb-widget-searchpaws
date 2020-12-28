@@ -1,6 +1,6 @@
 <div class="recent-replies">
 	<ul id="recent_topics" data-numtopics="{numTopics}">
-	<!-- IMPORT partials/trendingtopics_teaser.tpl -->
+	<!-- IMPORT partials/topics_teaser.tpl -->
 	</ul>
 </div>
 
