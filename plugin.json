@@ -24,7 +24,7 @@
 			"hook": "filter:widget.render:recenttopics", "method": "renderRecentTopicsWidget"
 		},
 		{
-			"hook": "filter:widget.render:recenttopics", "method": "renderTrendingQuestionsWidget"
+			"hook": "filter:widget.render:trendingquestions", "method": "renderTrendingQuestionsWidget"
 		},
 		{
 			"hook": "filter:widget.render:recentview", "method": "renderRecentViewWidget"
