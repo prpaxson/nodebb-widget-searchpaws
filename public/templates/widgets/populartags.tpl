@@ -1,8 +1,10 @@
 <ul class="categories-list">
 {{{ each tags}}}
-	<span class="inline-block">
-		<a href="{relative_path}/tags/{tags.value}"><span class="topic_category tag-{tags.value}"></span></a>
-	</span>
+	<li>
+		<a href="{relative_path}/tags/{tags.value}"  id="topic_category">
+			<div id="tag-{tags.value}"></div>
+		</a>
+	</li>
 {{{ end }}}
 </ul>
 <script>
