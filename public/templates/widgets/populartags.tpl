@@ -2,6 +2,9 @@
 {{{ each tags}}}
 	<li>
 		<a href="{relative_path}/tags/{tags.value}"  id="topic_category">
+			<span class="fa-stack fa-lg" style="background-color: #83A7B9; color: #ffffff;">
+				<i class="fa fa-building fa-stack-1x"></i>
+			</span>
 			<div id="tag-{tags.value}"></div>
 		</a>
 	</li>
@@ -10,7 +13,7 @@
 
 {{{ each tags }}}
 <script>
-var words = {tags.value}.split(" ");
+var words = "{tags.value}".split(" ");
 console.log(words);
 for (let i = 0; i < words.length; i++) {
     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
