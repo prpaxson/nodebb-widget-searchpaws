@@ -274,46 +274,16 @@ Widget.defineWidgets = async function (widgets) {
 			content: 'admin/text',
 		},
 		{
-			widget: 'onlineusers',
-			name: 'Online Users',
-			description: 'List of online users',
-			content: 'admin/onlineusers',
-		},
-		{
-			widget: 'activeusers',
-			name: 'Active Users',
-			description: 'List of active users in a category/topic',
-			content: 'admin/activeusers',
-		},
-		{
-			widget: 'latestusers',
-			name: 'Latest Users',
-			description: 'List of latest registered users.',
-			content: 'admin/latestusers',
-		},
-		{
-			widget: 'moderators',
-			name: 'Moderators',
-			description: 'List of moderators in a category.',
-			content: 'admin/categorywidget',
-		},
-		{
-			widget: 'forumstats',
-			name: 'Forum Stats',
-			description: 'Lists user, topics, and post count.',
-			content: 'admin/forumstats',
-		},
-		{
 			widget: 'recentposts',
 			name: 'Recent Posts',
 			description: 'Lists the latest posts on your forum.',
 			content: 'admin/recentposts',
 		},
 		{
-			widget: 'recenttopics',
-			name: 'Recent Topics',
+			widget: 'trendingquestions',
+			name: 'Trending Questions',
 			description: 'Lists the latest topics on your forum.',
-			content: 'admin/recenttopics',
+			content: 'admin/trendingquestions',
 		},
 		{
 			widget: 'recentview',
@@ -344,18 +314,6 @@ Widget.defineWidgets = async function (widgets) {
 			name: 'Top Topics',
 			description: 'Lists top topics on your forum',
 			content: 'admin/toptopics',
-		},
-		{
-			widget: 'mygroups',
-			name: 'My Groups',
-			description: 'List of groups that you are in',
-			content: 'admin/mygroups',
-		},
-		{
-			widget: 'newgroups',
-			name: 'New Groups',
-			description: 'List of newest groups',
-			content: 'admin/mygroups',
 		},
 		{
 			widget: 'suggestedtopics',
