@@ -7,13 +7,16 @@
 	</li>
 {{{ end }}}
 </ul>
-<script>
+
 {{{ each tags }}}
+<script>
 var words = tags.value.split(" ");
+console.log(words);
 for (let i = 0; i < words.length; i++) {
     words[i] = words[i][0].toUpperCase() + words[i].substr(1);
 }
 words.join(" ");
 document.getElementById('tag-{tags.value}').innerHTML = words;
-{{{ end }}}
+console.log("after: " + words);
 </script>
+{{{ end }}}
