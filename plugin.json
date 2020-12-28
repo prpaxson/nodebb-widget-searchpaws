@@ -1,8 +1,8 @@
 {
-	"id": "nodebb-widget-essentials",
-	"name": "NodeBB Essential Widgets",
-	"description": "Several basic widgets bundled together in one package including 'HTML', 'Markdown'",
-	"url": "https://github.com/psychobunny/nodebb-widget-essentials",
+	"id": "nodebb-widget-searchpaws",
+	"name": "SearchPaws Widgets",
+	"description": "SearchPaws widgets",
+	"url": "https://github.com/prpaxson/nodebb-widget-searchpaws",
 	"library": "./library.js",
 	"hooks": [
 		{
@@ -18,25 +18,10 @@
 			"hook": "filter:widget.render:html", "method": "renderHTMLWidget"
 		},
 		{
-			"hook": "filter:widget.render:onlineusers", "method": "renderOnlineUsersWidget"
-		},
-		{
-			"hook": "filter:widget.render:activeusers", "method": "renderActiveUsersWidget"
-		},
-		{
-			"hook": "filter:widget.render:latestusers", "method": "renderLatestUsersWidget"
-		},
-		{
-			"hook": "filter:widget.render:moderators", "method": "renderModeratorsWidget"
-		},
-		{
-			"hook": "filter:widget.render:forumstats", "method": "renderForumStatsWidget"
-		},
-		{
 			"hook": "filter:widget.render:recentposts", "method": "renderRecentPostsWidget"
 		},
 		{
-			"hook": "filter:widget.render:recenttopics", "method": "renderRecentTopicsWidget"
+			"hook": "filter:widget.render:recenttopics", "method": "renderTrendingQuestionsWidget"
 		},
 		{
 			"hook": "filter:widget.render:recentview", "method": "renderRecentViewWidget"
@@ -52,15 +37,6 @@
 		},
 		{
 			"hook": "filter:widget.render:toptopics", "method": "renderTopTopics"
-		},
-		{
-			"hook": "filter:widget.render:newgroups", "method": "renderNewGroups"
-		},
-		{
-			"hook": "filter:widget.render:mygroups", "method": "renderMyGroups"
-		},
-		{
-			"hook": "filter:widget.render:groupposts", "method": "renderGroupPosts"
 		},
 		{
 			"hook": "filter:widget.render:suggestedtopics", "method": "renderSuggestedTopics"

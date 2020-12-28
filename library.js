@@ -80,89 +80,6 @@ Widget.renderRecentViewWidget = async function (widget) {
 	return widget;
 };
 
-Widget.renderOnlineUsersWidget = async function (widget) {
-	const count = Math.max(1, widget.data.numUsers || 24);
-	const uids = await user.getUidsFromSet('users:online', 0, count - 1);
-	let userData = await user.getUsersFields(uids, ['uid', 'username', 'userslug', 'picture', 'status']);
-	userData = userData.filter(user => user.status !== 'offline');
-	widget.html = await app.renderAsync('widgets/onlineusers', {
-		online_users: userData,
-		relative_path: nconf.get('relative_path'),
-	});
-	return widget;
-};
-
-Widget.renderActiveUsersWidget = async function (widget) {
-	const count = Math.max(1, widget.data.numUsers || 24);
-	const cids = getCidsArray(widget);
-	let uids;
-	if (cids.length) {
-		uids = await categories.getActiveUsers(cids);
-	} else if (widget.templateData.template.topic) {
-		uids = await topics.getUids(widget.templateData.tid);
-	} else {
-		uids = await posts.getRecentPosterUids(0, count - 1);
-	}
-	uids = uids.slice(0, count);
-
-	const userData = await user.getUsersFields(uids, ['uid', 'username', 'userslug', 'picture']);
-	widget.html = await app.renderAsync('widgets/activeusers', {
-		active_users: userData,
-		relative_path: nconf.get('relative_path'),
-	});
-	return widget;
-};
-
-Widget.renderLatestUsersWidget = async function (widget) {
-	const count = Math.max(1, widget.data.numUsers || 24);
-	const users = await user.getUsersFromSet('users:joindate', widget.uid, 0, count - 1);
-	widget.html = await app.renderAsync('widgets/latestusers', {
-		users: users,
-		relative_path: nconf.get('relative_path'),
-	});
-	return widget;
-};
-
-Widget.renderModeratorsWidget = async function (widget) {
-	let cid;
-
-	if (widget.data.cid) {
-		cid = widget.data.cid;
-	} else if (widget.templateData.template.category) {
-		cid = widget.templateData.cid;
-	} else if (widget.templateData.template.topic && widget.templateData.category) {
-		cid = widget.templateData.category.cid;
-	}
-	const moderators = await categories.getModerators(cid);
-	if (!moderators.length) {
-		return null;
-	}
-	widget.html = await app.renderAsync('widgets/moderators', {
-		moderators: moderators,
-		relative_path: nconf.get('relative_path'),
-	});
-	return widget;
-};
-
-Widget.renderForumStatsWidget = async function (widget) {
-	const socketRooms = require.main.require('./src/socket.io/admin/rooms');
-	const [global, onlineCount, guestCount] = await Promise.all([
-		db.getObjectFields('global', ['topicCount', 'postCount', 'userCount']),
-		db.sortedSetCount('users:online', Date.now() - (meta.config.onlineCutoff * 60000), '+inf'),
-		socketRooms.getTotalGuestCount(),
-	]);
-
-	const stats = {
-		topics: utils.makeNumberHumanReadable(global.topicCount ? global.topicCount : 0),
-		posts: utils.makeNumberHumanReadable(global.postCount ? global.postCount : 0),
-		users: utils.makeNumberHumanReadable(global.userCount ? global.userCount : 0),
-		online: utils.makeNumberHumanReadable(onlineCount + guestCount),
-		statsClass: widget.data.statsClass,
-	};
-	widget.html = await app.renderAsync('widgets/forumstats', stats);
-	return widget;
-};
-
 Widget.renderRecentPostsWidget = async function (widget) {
 	let cid;
 
@@ -190,7 +107,7 @@ Widget.renderRecentPostsWidget = async function (widget) {
 	return widget;
 };
 
-Widget.renderRecentTopicsWidget = async function (widget) {
+Widget.renderTrendingQuestionsWidget = async function (widget) {
 	const numTopics = (widget.data.numTopics || 8) - 1;
 	const cids = getCidsArray(widget);
 
@@ -212,7 +129,7 @@ Widget.renderRecentTopicsWidget = async function (widget) {
 			};
 		}
 	});
-	widget.html = await app.renderAsync('widgets/recenttopics', {
+	widget.html = await app.renderAsync('widgets/trendingquestions', {
 		topics: data.topics,
 		numTopics: numTopics,
 		relative_path: nconf.get('relative_path'),
