@@ -14,7 +14,6 @@
 {{{ each tags }}}
 <script>
 var words = "{tags.value}".split(" ");
-console.log(words);
 for (let i = 0; i < words.length; i++) {
 	if (words[i].length == 1) {
 		words[i] = words[i][0].toUpperCase() + ".";
