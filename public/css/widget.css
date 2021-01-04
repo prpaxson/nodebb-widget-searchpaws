@@ -119,15 +119,3 @@
 .sidebar-category-header {
   padding-top:8px;
 }
-
-.leftsidebar-content{
-  position:fixed;
-  width: 13%;
-  height: 70vh;
-  overflow-y: auto;
-  margin-bottom: 10px;
-}
-
-.rightsidebar-content{
-  position:fixed;
-}
